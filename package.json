@@ -4,7 +4,14 @@
   "license": "MIT",
   "version": "0.1.0",
   "description": "EF tutorial including ES5 to typescript, parcel-bundler",
-  "keywords": ["phaser", "phaser3", "phaser 3", "typescript", "TS", "parcel"],
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "phaser 3",
+    "typescript",
+    "TS",
+    "parcel"
+  ],
   "scripts": {
     "cl-dist": "rm dist/*",
     "cl-cache": "rm .cache",
@@ -17,6 +24,7 @@
     "phaser": "^3.17.0"
   },
   "devDependencies": {
-    "sass": "^1.20.1"
+    "sass": "^1.20.1",
+    "typescript": "^3.4.5"
   }
 }
