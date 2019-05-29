@@ -1,2 +1,5 @@
-const MSG = 'Phaser 3 with TypeScript';
-export {MSG};
+export default {
+  MSG: 'JulieGirlGames rocks!!!'
+}
+
+
