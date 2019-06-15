@@ -4,7 +4,6 @@ function resizeGame(game: Phaser.Game) {
   const windowHeight = window.innerHeight;
   const windowRatio = windowWidth / windowHeight;
   let gameRatio = game.config.width / game.config.height;
-  console.log(windowRatio, gameRatio);
 
   if (canvas) {
     if (windowRatio < gameRatio) {
@@ -16,6 +15,7 @@ function resizeGame(game: Phaser.Game) {
     }
   }
 }
+
 export default {
   resizeGame
 };

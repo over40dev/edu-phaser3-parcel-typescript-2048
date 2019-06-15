@@ -1,23 +1,23 @@
 import Phaser from "phaser";
+import {Board, Tile} from './interfaces';
 
-let gameOptions = {
-  tileSize: 200,
-  tileSpacing: 20,
-  boardSize: {
-    rows: 4,
-    cols: 4
-  }
+const boardConfig:Board = {
+  rows: 4,
+  cols: 4,
 };
 
-const { tileSize, tileSpacing } = gameOptions;
-const { rows, cols } = gameOptions.boardSize;
+const tileConfig:Tile = {
+  width: 200,
+  height: 200,
+  spacing: 20,
+  value: 0,
+};
 
-let gameConfig: Phaser.Types.Core.GameConfig = {
+const gameConfig:Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: "app-container",
-  width: cols * (tileSize + tileSpacing) + tileSpacing,
-  height: rows * (tileSize + tileSpacing) + tileSpacing,
-  // backgroundColor: 0xecf0f1,
-};
+  width: boardConfig.cols * (tileConfig.width + tileConfig.spacing) + tileConfig.spacing,
+  height: boardConfig.rows * (tileConfig.height + tileConfig.spacing) + tileConfig.spacing,
+}; 
 
-export { gameOptions, gameConfig };
+export default { gameConfig, boardConfig, tileConfig };

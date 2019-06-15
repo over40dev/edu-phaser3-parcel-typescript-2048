@@ -1,9 +1,10 @@
 import util from "./util";
-import { gameConfig, gameOptions } from "./config";
-import constants from "./constants";
+import config from './config';
+import constants from './constants'
+import { Board, Tile } from './interfaces';
 
 const { resizeGame } = util;
 
 const { MSG } = constants;
 
-export { resizeGame, gameConfig, gameOptions, MSG };
+export { resizeGame, config, MSG, Board, Tile };
