@@ -1,11 +1,12 @@
 import Phaser from 'phaser';
 import { bootGame, playGame } from './src/scenes';
-import { gameConfig, resizeGame } from './src/services';
+import { IBoard, ITile } from './src/interfaces';
+import { GameConfig, resizeGame } from './src/services';
 
 let game: Phaser.Game;
 
 function startGame() {
-  game = new Phaser.Game(gameConfig);
+  game = new Phaser.Game(GameConfig.gameConfig);
   game.scene.add("BootGame", bootGame);
   game.scene.add("PlayGame", playGame);
   game.scene.start("BootGame");
