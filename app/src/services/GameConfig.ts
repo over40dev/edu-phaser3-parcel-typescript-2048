@@ -6,7 +6,7 @@ export default class GameConfig {
   static boardConfig:IBoard = {
     rows: 4,
     cols: 4,
-    spacing: 20
+    spacing: 20,
   };
 
   static tileConfig:ITile = {
