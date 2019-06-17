@@ -16,3 +16,4 @@ No way, JulieGirlGames adds AWESOME!!!
 - 003 add tiles to board
 - 004 using tweens to animate tiles
 - 005 checking when tweens end
+- 006 waiting for player input
