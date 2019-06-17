@@ -15,3 +15,5 @@ No way, JulieGirlGames adds AWESOME!!!
 - 002 include use of spritesheet
 - 003 add tiles to board
 - 004 using tweens to animate tiles
+- 005 checking when tweens end
+- 006 waiting for player input
