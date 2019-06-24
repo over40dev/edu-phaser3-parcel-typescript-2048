@@ -99,7 +99,7 @@ export default class playGame extends Phaser.Scene {
     const {RIGHT, LEFT, UP, DOWN} = this.direction;
     
     // console.log('key pressed = ', keyPressed, typeof keyPressed, this.input.keyboard.keys);
-    console.log('key pressed = ', keyPressed, typeof keyPressed, this.moveKeys);
+    // console.log('key pressed = ', keyPressed, typeof keyPressed, this.moveKeys);
     // const ["KeyA", "KeyD"] = this.input.keyboard.keys;
 
     // if (this.canMove && this.input.keyboard.keys.includes("KeyD")) {
@@ -137,29 +137,37 @@ export default class playGame extends Phaser.Scene {
   
   handleSwipe(event:Phaser.Input.Pointer) {
     const {upTime, downTime, upX, downX, upY, downY} = event;
-    const swipeTime:number
-      = upTime - downTime;
-    const swipeDistance:Phaser.Geom.Point
+    const {RIGHT, LEFT, UP, DOWN} = this.direction;
+    const {swipeMinNormal:min, swipeMaxTime:maxTime, swipeMinDistance:minDist} = GameConfig.swipeCriteria;
+    const swipeTime:number = upTime - downTime;
+    const fastEnough:boolean = swipeTime < maxTime;
+    const swipe:Phaser.Geom.Point
       = new Phaser.Geom.Point(upX - downX, upY - downY);
+    const swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipe);
+    const longEnough:boolean = swipeMagnitude > minDist;
 
-
-
-
+    if (longEnough && fastEnough) {
+      Phaser.Geom.Point.SetMagnitude(swipe, 1);
+      if (swipe.x > min) this.move(RIGHT);
+      if (swipe.x < -min) this.move(LEFT);
+      if (swipe.y > min) this.move (DOWN);
+      if (swipe.y < -min) this.move (UP);
+    }
 
 
       
-    console.log(`
-      You touched or clicked: 
-      - uT is... ${upTime}
-      - dT is... ${downTime}
-      - uX is... ${upX}
-      - dX is... ${downX}
-      - uY is... ${upY}
-      - dY is... ${downY}
-      - sT is... ${swipeTime}ms
-      - sD is... x:${swipeDistance.x} y:${swipeDistance.y} pixels
-    `
-    );
+    // console.log(`
+    //   You touched or clicked: 
+    //   - uT is... ${upTime}
+    //   - dT is... ${downTime}
+    //   - uX is... ${upX}
+    //   - dX is... ${downX}
+    //   - uY is... ${upY}
+    //   - dY is... ${downY}
+    //   - sT is... ${swipeTime}ms
+    //   - sD is... x:${swipe.x} y:${swipe.y} pixels
+    // `
+    // );
     // const argsArray:Array<any> = Array.from(arguments);
     // console.log(event, argsArray, typeof event);
     // debugger;
