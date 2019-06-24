@@ -9,8 +9,8 @@ export default class bootGame extends Phaser.Scene {
   preload() {
     this.load.image('emptytile', require('../assets/sprites/emptytile.png'));
     this.load.spritesheet('tiles', require('../assets/sprites/tiles.png'), {
-      frameWidth: GameConfig.tileConfig.width,
-      frameHeight: GameConfig.tileConfig.height,
+      frameWidth: GameConfig.tile.width,
+      frameHeight: GameConfig.tile.height,
     });
   }
   create() {

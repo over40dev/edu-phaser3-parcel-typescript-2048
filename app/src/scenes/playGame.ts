@@ -1,21 +1,31 @@
 import Phaser from "phaser";
-import { GameConfig, resizeGame } from '../services';
-import { IBoard, ITile } from '../interfaces';
-import { type } from "os";
+import { GameConfig } from '../services';
+import { ITile, IDirection, ISwipeCriteria } from '../interfaces';
+
 
 export default class playGame extends Phaser.Scene {
 
   boardArray:Array<ITile[]>;
-  canMove:boolean = false;
+  canMove:boolean;
+  cursorKeys:Array<string>;
+  direction:IDirection;
+  moveKeys:Array<string>;
+  // cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
   constructor() {
     super("PlayGame");
     this.boardArray = [];
+    this.canMove = false;
+    // debugger;
+    this.direction = GameConfig.direction;
+    this.cursorKeys = [];
+    this.moveKeys = GameConfig.moveKeys;
   }
   
   create() {
-    this.canMove = false;
-    const { rows, cols } = GameConfig.boardConfig;
+    this.cursorKeys = Object.keys(this.input.keyboard.createCursorKeys());
+    const { rows, cols } = GameConfig.board;
+    
     for ( let row = 0; row < rows; row++) {
       this.boardArray[row] = [];
       for (let col = 0; col < cols; col++) {
@@ -39,8 +49,8 @@ export default class playGame extends Phaser.Scene {
 
   addTile() {
     const emptyTiles = [];
-    for (let row = 0; row < GameConfig.boardConfig.rows; row++) {
-      for (let col = 0; col < GameConfig.boardConfig.cols; col++) {
+    for (let row = 0; row < GameConfig.board.rows; row++) {
+      for (let col = 0; col < GameConfig.board.cols; col++) {
         if (this.boardArray[row][col].value === 0) {
           emptyTiles.push({
             row,
@@ -64,18 +74,16 @@ export default class playGame extends Phaser.Scene {
           alpha: 1,
           duration: GameConfig.gamePlayConfig.tweenSpeed,
           callbackScope: this,
-          onComplete: function() {
-            console.log('tween completed', this.canMove);
+          onComplete: () => {
             this.canMove = true;
-            console.log('tween completed2', this.canMove);
           }
         });
     }
   }
 
   getTilePosition(row: number, col: number): Phaser.Geom.Point {
-    const { width, height} = GameConfig.tileConfig;
-    const { spacing } = GameConfig.boardConfig;
+    const { width, height} = GameConfig.tile;
+    const { spacing } = GameConfig.board;
     const posX = spacing * (col + 1) + width * (col + 0.5);
     const posY = spacing * (row + 1) + height * (row + 0.5);
 
@@ -83,11 +91,48 @@ export default class playGame extends Phaser.Scene {
   }
 
   handleKey(event:KeyboardEvent) {
-
     const {code:keyPressed} = event; // ES!example##destructuring##object##alias
-    console.log(`You pressed... ${keyPressed}`);
-    // console.log(`event `, arguments);
-    // debugger;
+    if (keyPressed) {
+      if (!this.moveKeys.includes(keyPressed)) return;
+    }
+    
+    const {RIGHT, LEFT, UP, DOWN} = this.direction;
+    
+    // console.log('key pressed = ', keyPressed, typeof keyPressed, this.input.keyboard.keys);
+    console.log('key pressed = ', keyPressed, typeof keyPressed, this.moveKeys);
+    // const ["KeyA", "KeyD"] = this.input.keyboard.keys;
+
+    // if (this.canMove && this.input.keyboard.keys.includes("KeyD")) {
+    if (this.canMove) {
+      switch (keyPressed) {
+        // move Right
+        case "KeyD":
+        case "ArrowRight":
+          this.move(RIGHT);
+          break;
+        // move Left
+        case "KeyA":
+        case "ArrowLeft":
+          this.move(LEFT);
+          break;
+        // move Up
+        case "KeyW":
+        case "ArrowUp":
+          this.move(UP);
+          break;
+        // move Left
+        case "KeyS":
+        case "ArrowDown":
+          this.move(DOWN);
+          break;
+      
+        default:
+          break;
+      }
+    }
+  }
+  move(direction: number) {
+    console.log(`move ${direction}`);
   }
   
   handleSwipe(event:Phaser.Input.Pointer) {
@@ -96,6 +141,13 @@ export default class playGame extends Phaser.Scene {
       = upTime - downTime;
     const swipeDistance:Phaser.Geom.Point
       = new Phaser.Geom.Point(upX - downX, upY - downY);
+
+
+
+
+
+
+      
     console.log(`
       You touched or clicked: 
       - uT is... ${upTime}
@@ -104,8 +156,8 @@ export default class playGame extends Phaser.Scene {
       - dX is... ${downX}
       - uY is... ${upY}
       - dY is... ${downY}
-      - sT is... ${swipeTime}
-      - sD is... x:${swipeDistance.x} y:${swipeDistance.y}
+      - sT is... ${swipeTime}ms
+      - sD is... x:${swipeDistance.x} y:${swipeDistance.y} pixels
     `
     );
     // const argsArray:Array<any> = Array.from(arguments);
