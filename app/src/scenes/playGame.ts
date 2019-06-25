@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import { GameConfig } from '../services';
+import { setupListeners } from '../services';
+import GameConfig from '../../GameConfig';
 import { ITile, IDirection, ISwipeCriteria } from '../interfaces';
 
 

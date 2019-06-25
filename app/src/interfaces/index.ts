@@ -5,6 +5,7 @@ import ITexture from './ITexture';
 import IDirection from './IDirection';
 import ISwipeCriteria from './ISwipeCriteria';
 import {
+  INameValue,
   IActionKeys,
   ISetGameKeys,
 } from './IKeys';
@@ -16,6 +17,7 @@ export {
   ITexture,
   IDirection,
   ISwipeCriteria,
+  INameValue,
   IActionKeys,
   ISetGameKeys,
 }

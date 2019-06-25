@@ -6,12 +6,7 @@ import {
   ISwipeCriteria, 
   ISetGameKeys as Keys,
 } 
-  from "../interfaces";
-
-// export const LEFT = 0;
-// export const RIGHT = 1;
-// export const UP = 2;
-// export const DOWN = 3;
+  from "./src/interfaces";
 
 export default class GameConfig {
   static board: IBoard = {
@@ -42,17 +37,6 @@ export default class GameConfig {
     UP: 2,
     DOWN: 3
   };
-
-  // static moveKeys: IMoveKeys = {  //TODO - 
-  //   left: "left",
-  //   right: "right",
-  //   up: "up",
-  //   down: "down",
-  //   // left: "ArrowLeft",
-  //   // right: "ArrowRight",
-  //   // up: "ArrowUp",
-  //   // down: "ArrowDown"
-  // };
 
   static moveKeys: Array<string> = [
     "KeyA", "KeyD", "KeyW", "KeyS",

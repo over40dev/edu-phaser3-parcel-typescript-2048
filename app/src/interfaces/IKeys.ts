@@ -9,7 +9,13 @@
 //   down?:string;
 // };
 
-// interface IMoveKeys: {Array<string>};
+ interface INameValue {
+   name:string;
+   value:any;
+ }
+
+// interface IMoveKeys {
+//   Array<INameValue>};
 
 interface IActionKeys {
   play:string;
@@ -20,7 +26,7 @@ interface ISetGameKeys {
 }
 
 export {
-  // IMoveKeys,
+  INameValue,
   IActionKeys,
   ISetGameKeys,
 }

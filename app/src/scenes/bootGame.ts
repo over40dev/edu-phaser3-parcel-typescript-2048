@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
-import { GameConfig } from '../services';
+import { setupListeners } from '../services';
+import GameConfig from '../../GameConfig';
+// import { setupListeners } from '../services/InputManager';
 
 export default class bootGame extends Phaser.Scene {
 
@@ -14,6 +16,7 @@ export default class bootGame extends Phaser.Scene {
     });
   }
   create() {
-    this.scene.start('PlayGame');
+    setupListeners(this); // `this` is the `scene:` `bootGame`
+    this.game.scene.start("PlayGame");
   }
 }
