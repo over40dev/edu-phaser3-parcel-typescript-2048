@@ -17,3 +17,5 @@ No way, JulieGirlGames adds AWESOME!!!
 - 004 using tweens to animate tiles
 - 005 checking when tweens end
 - 006 waiting for player input
+- 007 processing keyboard input
+  

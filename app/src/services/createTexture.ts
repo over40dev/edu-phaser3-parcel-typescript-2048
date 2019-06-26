@@ -1,2 +1,0 @@
-class createTexture extends Phaser.
-

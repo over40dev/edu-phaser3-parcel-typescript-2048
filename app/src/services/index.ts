@@ -1,4 +1,4 @@
 import resizeGame from "./resizeGame";
-import GameConfig from './GameConfig';
+import {setupListeners} from './InputManager';
 
-export { resizeGame, GameConfig };
+export { resizeGame, setupListeners};
