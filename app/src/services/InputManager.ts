@@ -1,31 +1,25 @@
-import Phaser from 'phaser';
-import {INameValue} from '../interfaces';
+import Phaser, { Game } from 'phaser';
+import GameConfig from '../GameConfig';
+import {IMoveKey} from '../interfaces';
 
 class InputManager {
 
-  keys:Array<INameValue>;
-  bindings:Array<number>;
+  // moveKeys:Array<string>;
+  gameKeys:Array<IMoveKey>;
 
   constructor() {
-    this.bindings = [];
-    this.keys = [
-      {name: 'KeyW', value: Phaser.Input.Keyboard.KeyCodes.W},
-      {name: 'KeyA', value: Phaser.Input.Keyboard.KeyCodes.A},
-      {name: 'KeyS', value: Phaser.Input.Keyboard.KeyCodes.S},
-      {name: 'KeyD', value: Phaser.Input.Keyboard.KeyCodes.D},
-      {name: 'ArrowUp', value: Phaser.Input.Keyboard.KeyCodes.UP},
-      {name: 'ArrowLeft', value: Phaser.Input.Keyboard.KeyCodes.LEFT},
-      {name: 'ArrowDown', value: Phaser.Input.Keyboard.KeyCodes.DOWN},
-      {name: 'ArrowRight', value: Phaser.Input.Keyboard.KeyCodes.RIGHT},
-    ];
+    // this.moveKeys = GameConfig.moveKeys;
+    this.gameKeys = GameConfig.gameKeys;
   }
 
   setupListeners(scene:Phaser.Scene) {
-    this.keys.forEach(({name, value}) => {
-      this.bindings[name] = scene.input.keyboard.addKey(value);
-    });
+      this.gameKeys.forEach((key) => {
+        key.listener = scene.input.keyboard.addKey(key.value);
+      });
   }
 }
+          // this.keys.forEach((key:string)) => {
+          //   this.bindings[key] = scene.input.keyboard.addKey(key);
 
 const InputManagerInstance = new InputManager();
 

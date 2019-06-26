@@ -1,16 +1,17 @@
 import Phaser from "phaser";
 import { setupListeners } from '../services';
-import GameConfig from '../../GameConfig';
-import { ITile, IDirection, ISwipeCriteria } from '../interfaces';
-
+import GameConfig from '../GameConfig';
+import { ITile, IDirection, ISwipeCriteria, IMoveKey } from '../interfaces';
 
 export default class playGame extends Phaser.Scene {
 
   boardArray:Array<ITile[]>;
   canMove:boolean;
+
   cursorKeys:Array<string>;
   direction:IDirection;
   moveKeys:Array<string>;
+  gameKeys:Array<IMoveKey>;
   // cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys;
 
   constructor() {
@@ -21,10 +22,12 @@ export default class playGame extends Phaser.Scene {
     this.direction = GameConfig.direction;
     this.cursorKeys = [];
     this.moveKeys = GameConfig.moveKeys;
+    this.gameKeys = GameConfig.gameKeys;
   }
   
   create() {
-    this.cursorKeys = Object.keys(this.input.keyboard.createCursorKeys());
+    setupListeners(this); // this is reference to current Scene `playGame
+    // this.cursorKeys = Object.keys(this.input.keyboard.createCursorKeys());
     const { rows, cols } = GameConfig.board;
     
     for ( let row = 0; row < rows; row++) {
@@ -98,12 +101,7 @@ export default class playGame extends Phaser.Scene {
     }
     
     const {RIGHT, LEFT, UP, DOWN} = this.direction;
-    
-    // console.log('key pressed = ', keyPressed, typeof keyPressed, this.input.keyboard.keys);
-    // console.log('key pressed = ', keyPressed, typeof keyPressed, this.moveKeys);
-    // const ["KeyA", "KeyD"] = this.input.keyboard.keys;
 
-    // if (this.canMove && this.input.keyboard.keys.includes("KeyD")) {
     if (this.canMove) {
       switch (keyPressed) {
         // move Right
@@ -154,8 +152,6 @@ export default class playGame extends Phaser.Scene {
       if (swipe.y > min) this.move (DOWN);
       if (swipe.y < -min) this.move (UP);
     }
-
-
       
     // console.log(`
     //   You touched or clicked: 
@@ -169,9 +165,6 @@ export default class playGame extends Phaser.Scene {
     //   - sD is... x:${swipe.x} y:${swipe.y} pixels
     // `
     // );
-    // const argsArray:Array<any> = Array.from(arguments);
-    // console.log(event, argsArray, typeof event);
-    // debugger;
   }
 
 }

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {bootGame, playGame} from './src/scenes';
+import {bootGame, playGame} from './scenes';
 import GameConfig from './GameConfig';
 
 const {game:config} = GameConfig;

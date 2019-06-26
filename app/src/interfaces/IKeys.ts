@@ -1,32 +1,19 @@
-// interface IMoveKeys {
-//   A?:string;
-//   left?:string;
-//   D?:string;
-//   right?:string;
-//   W?:string;
-//   up?:string;
-//   S?:string;
-//   down?:string;
-// };
-
- interface INameValue {
+ interface IMoveKey {
    name:string;
-   value:any;
+   value:number;
+   velocityX?:number;
+   velocityY?:number;
+   listener?:any;
  }
 
-// interface IMoveKeys {
-//   Array<INameValue>};
+// interface IActionKeys {
+//   play:string;
+// }
 
-interface IActionKeys {
-  play:string;
-};
-
-interface ISetGameKeys {
-  setGameKeys(keys?:string):Array<string>;
-}
+// interface ISetGameKeys {
+//   setGameKeys(keys?:string):Array<string>;
+// }
 
 export {
-  INameValue,
-  IActionKeys,
-  ISetGameKeys,
+  IMoveKey,
 }
