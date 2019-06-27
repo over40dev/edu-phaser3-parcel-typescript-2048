@@ -10,11 +10,12 @@ class InputManager {
   constructor() {
     // this.moveKeys = GameConfig.moveKeys;
     this.gameKeys = GameConfig.gameKeys;
+    console.table(this.gameKeys);
   }
 
   setupListeners(scene:Phaser.Scene) {
       this.gameKeys.forEach((key) => {
-        key.listener = scene.input.keyboard.addKey(key.value);
+        key.listener = scene.input.keyboard.addKey(key.value); // RED-FLAG: possible change default Phaser behaviour of Global variable setting?
       });
   }
 }
