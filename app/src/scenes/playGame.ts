@@ -95,18 +95,20 @@ export default class playGame extends Phaser.Scene {
     return new Phaser.Geom.Point(posX, posY);
   }
 
-  handleKey(event: KeyboardEvent) {
+  handleKey(event: KeyboardEvent): void {
     const { code: keyPressed } = event; // ES!example##destructuring##object##alias
     const {RIGHT,LEFT,UP,DOWN} = this.direction;
-    const gameKey: IMoveKey | undefined = this.gameKeys.find(
-      k => k.key === keyPressed
-    );
-
+    const isGameKey:boolean = this.moveKeys.some(k => k === keyPressed)
+     && this.gameKeys.some(g => g.key === keyPressed);
+    
+    const role = this.gameKeys.find(g => g.key === keyPressed);
+    
     // we have a game key... now what...
     // the `!!` converts an entity to boolean true or false
-
-    if (!!gameKey && this.canMove) {
-      switch (gameKey.role) {
+    
+    if (isGameKey && this.canMove) {
+      
+      switch (role) {
         // move Right
         case "MoveRight":
           this.move(RIGHT);
