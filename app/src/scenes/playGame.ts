@@ -99,14 +99,21 @@ export default class playGame extends Phaser.Scene {
     const { code: keyPressed } = event; // ES!example##destructuring##object##alias
     const {RIGHT,LEFT,UP,DOWN} = this.direction;
     const isGameKey:boolean = this.moveKeys.some(k => k === keyPressed)
-     && this.gameKeys.some(g => g.key === keyPressed);
+    && this.gameKeys.some(g => g.key === keyPressed);
     
-    const role = this.gameKeys.find(g => g.key === keyPressed);
+    const input = this.gameKeys.find(g => g.key === keyPressed);
+    const role = input && input.role;
+
+    console.log('moveKeys ', this.moveKeys);
+    console.log('gameKeys ', this.gameKeys);
+    console.log('keyPressed ', keyPressed);
+    console.log('canMove ', this.canMove);
+    console.log('role ', role, !!role);
     
     // we have a game key... now what...
     // the `!!` converts an entity to boolean true or false
     
-    if (isGameKey && this.canMove) {
+    if (this.canMove && isGameKey && !!role) {
       
       switch (role) {
         // move Right
@@ -162,17 +169,17 @@ export default class playGame extends Phaser.Scene {
       if (swipe.y < -min) this.move(UP);
     }
 
-    // console.log(`
-    //   You touched or clicked:
-    //   - uT is... ${upTime}
-    //   - dT is... ${downTime}
-    //   - uX is... ${upX}
-    //   - dX is... ${downX}
-    //   - uY is... ${upY}
-    //   - dY is... ${downY}
-    //   - sT is... ${swipeTime}ms
-    //   - sD is... x:${swipe.x} y:${swipe.y} pixels
-    // `
-    // );
+    console.log(`
+      You touched or clicked:
+      - uT is... ${upTime}
+      - dT is... ${downTime}
+      - uX is... ${upX}
+      - dX is... ${downX}
+      - uY is... ${upY}
+      - dY is... ${downY}
+      - sT is... ${swipeTime}ms
+      - sD is... x:${swipe.x} y:${swipe.y} pixels
+    `
+    );
   }
 }
