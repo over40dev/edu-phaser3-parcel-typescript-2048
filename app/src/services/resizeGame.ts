@@ -1,6 +1,7 @@
 export default function resizeGame(game: Phaser.Game) {
   const {width = 0, height = 0} = game.config;
   const canvas = document.querySelector("canvas");
+  // console.log('canvas', canvas);
   const windowWidth:number = window.innerWidth || 1;
   const windowHeight:number = window.innerHeight || 1;
   const windowRatio:number = windowWidth / windowHeight;

@@ -17,7 +17,7 @@ class GameConfig {
   static tile: ITile = {
     width: 200,
     height: 200,
-    value: 0
+    value: 0,
   };
 
   static swipeCriteria: ISwipeCriteria = {
@@ -27,7 +27,7 @@ class GameConfig {
   };
 
   static gamePlayConfig = {
-    tweenSpeed: 2000,
+    tweenSpeed: 200,
     DIRECTION_VELOCITY: 10
   };
 
