@@ -4,7 +4,7 @@ import {
   ITile,
   IDirection,
   ISwipeCriteria,
-  IMoveKey,
+  IMoveKey
 } from "./interfaces";
 
 class GameConfig {
@@ -17,7 +17,7 @@ class GameConfig {
   static tile: ITile = {
     width: 200,
     height: 200,
-    value: 0
+    value: 0,
   };
 
   static swipeCriteria: ISwipeCriteria = {
@@ -27,7 +27,8 @@ class GameConfig {
   };
 
   static gamePlayConfig = {
-    tweenSpeed: 2000
+    tweenSpeed: 200,
+    DIRECTION_VELOCITY: 10
   };
 
   static direction: IDirection = {
@@ -50,43 +51,44 @@ class GameConfig {
 
   static gameKeys: Array<IMoveKey> = [
     {
-      name: "KeyW",
+      key: "KeyW",
       value: Phaser.Input.Keyboard.KeyCodes.W,
+      role: "MoveUp"
     },
     {
-      name: "KeyA",
+      key: "KeyA",
       value: Phaser.Input.Keyboard.KeyCodes.A,
-
+      role: "MoveLeft"
     },
     {
-      name: "KeyS",
+      key: "KeyS",
       value: Phaser.Input.Keyboard.KeyCodes.S,
-
+      role: "MoveDown"
     },
     {
-      name: "KeyD",
+      key: "KeyD",
       value: Phaser.Input.Keyboard.KeyCodes.D,
-
+      role: "MoveRight"
     },
     {
-      name: "ArrowUp",
+      key: "ArrowUp",
       value: Phaser.Input.Keyboard.KeyCodes.UP,
-
+      role: "MoveUp"
     },
     {
-      name: "ArrowLeft",
+      key: "ArrowLeft",
       value: Phaser.Input.Keyboard.KeyCodes.LEFT,
-
+      role: "MoveLeft"
     },
     {
-      name: "ArrowDown",
+      key: "ArrowDown",
       value: Phaser.Input.Keyboard.KeyCodes.DOWN,
-
+      role: "MoveDown"
     },
     {
-      name: "ArrowRight",
+      key: "ArrowRight",
       value: Phaser.Input.Keyboard.KeyCodes.RIGHT,
-
+      role: "MoveRight"
     }
   ];
 

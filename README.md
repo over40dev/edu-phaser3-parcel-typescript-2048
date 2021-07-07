@@ -18,4 +18,6 @@ No way, JulieGirlGames adds AWESOME!!!
 - 005 checking when tweens end
 - 006 waiting for player input
 - 007 processing keyboard input
+- 008 processing pointer input
+- 009 moving tiles
   

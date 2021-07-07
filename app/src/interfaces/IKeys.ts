@@ -1,6 +1,7 @@
  interface IMoveKey {
-   name:string;
+   key:string;
    value:number;
+   role:string;
    velocityX?:number;
    velocityY?:number;
    listener?:any;
